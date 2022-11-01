@@ -21,6 +21,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res, next) => {
+  res.send('Hello from Banking app!');
+});
+
 app.use('/api/transactions', transactionsRoutes);
 
 module.exports = app;

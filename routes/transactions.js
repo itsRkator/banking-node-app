@@ -67,18 +67,22 @@ router.put('/withdraw', (req, res, next) => {
     if (err) {
       res.status(500).json({ message: 'Fetching transaction failed!' });
     } else {
-      if (transaction.amount >= amount) {
-        transaction.amount = transaction.amount - amount;
-        transaction.save().then(updatedTransaction => {
-          res.status(200).json({
-            message: 'Transaction updated successfully',
-            transaction: updatedTransaction
-          });
-        });
+      if (!transaction) {
+        res.status(200).json({ message: 'User does not exist!' });
       } else {
-        res.status(200).json({
-          message: 'Insufficient Balance'
-        });
+        if (transaction.amount >= amount) {
+          transaction.amount = transaction.amount - amount;
+          transaction.save().then(updatedTransaction => {
+            res.status(200).json({
+              message: 'Transaction updated successfully',
+              transaction: updatedTransaction
+            });
+          });
+        } else {
+          res.status(200).json({
+            message: 'Insufficient Balance'
+          });
+        }
       }
     }
   });
@@ -94,13 +98,17 @@ router.put('/deposit', (req, res, next) => {
     if (err) {
       res.status(500).json({ message: 'Fetching transaction failed!' });
     } else {
-      transaction.amount = transaction.amount + amount;
-      transaction.save().then(updatedTransaction => {
-        res.status(200).json({
-          message: 'Transaction updated successfully',
-          transaction: updatedTransaction
+      if (!transaction) {
+        res.status(200).json({ message: 'User does not exist!' });
+      } else {
+        transaction.amount = transaction.amount + amount;
+        transaction.save().then(updatedTransaction => {
+          res.status(200).json({
+            message: 'Transaction updated successfully',
+            transaction: updatedTransaction
+          });
         });
-      });
+      }
     }
   });
 });
