@@ -6,7 +6,7 @@ const transactionsRoutes = require('./routes/transactions');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://itsrkator:F-22RaptorRDX@mean-app-cluster.i9uxcni.mongodb.net/banking-db?retryWrites=true&w=majority').then(() => {
+mongoose.connect('<MONGODB_CONNECTION_URL>').then(() => {
   console.log('Connected to database!');
 }).catch(() => {
   console.log('Connection failed!');

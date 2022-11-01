@@ -1,10 +1,10 @@
 # NodeJs Banking App
 
-This project was generated with [Node.Js](https://github.com/nodejs/node) version v16.18.0.
+- This project was generated with [Node.Js](https://github.com/nodejs/node) version v16.18.0 and MongoDB.
 
 ## Application setup
-
 Install [Node.Js](https://nodejs.org/en/) v16+
+Connect mongodb database and replace `<MONGODB_CONNECTION_URL>` in the app.js with your mongodb connection url.
 Open Terminal/cmd and navigate to the root directory where the project is cloned.
 Run `npm install` command to install all the dependencies.
 
